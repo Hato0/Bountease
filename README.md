@@ -54,18 +54,17 @@ Will be updated.
 
 - [X] Whois Information
 - [X] Subdomains
-- [X] Dir info
-- [ ] S3 Buckets
-- [X] Social accounts
-- [X] API Endpoints
-- [ ] Emails
-- [ ] Vhosts
-- [ ] Backend IP address
-- [ ] Open Ports / Services running
-- [ ] Service version info (if applicable)
-- [ ] Server banners
+- [X] Backend IP address
+- [X] S3 Buckets
+- [X] Social informations
+- [X] Emails
+- [X] API availability
+- [X] Open Ports / Services running
+- [X] Service version info (if applicable)
+- [X] Vhosts
+- [X] Server banners
 - [ ] Directory listings
-- [ ] Presence security headers
+- [ ] Presence of security headers
 - [ ] WAF (+ WAF type)
 
 
