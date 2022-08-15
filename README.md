@@ -72,7 +72,7 @@ Will be updated.
   - [X] Server banners
   - [X] Presence of security headers
   - [X] WAF (+ WAF type)
-  - [ ] Directory listings
+  - [X] Directory listings
 - Exec
   - [ ] Markdown report creation
   - [ ] User inputs
