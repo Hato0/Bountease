@@ -39,6 +39,12 @@ Some python module are necessary to run it :
 pip install -r requirements.txt
 ```
 
+For active scanning you will need to have on your system the following tools:
+- [WafW00f](https://github.com/EnableSecurity/wafw00f)
+- [GoBuster](https://github.com/OJ/gobuster)
+
+Thanks creators for these tools.
+
 ### Installation
 
 Clone this github repository and start using it !
@@ -52,21 +58,24 @@ Will be updated.
 
 ## Roadmap
 
-- [X] Whois Information
-- [X] Subdomains
-- [X] Backend IP address
-- [X] S3 Buckets
-- [X] Social informations
-- [X] Emails
-- [X] API availability
-- [X] Open Ports / Services running
-- [X] Service version info (if applicable)
-- [X] Vhosts
-- [X] Server banners
-- [ ] Directory listings
-- [ ] Presence of security headers
-- [ ] WAF (+ WAF type)
-
+- Modules
+  - [X] Whois Information
+  - [X] Subdomains
+  - [X] Backend IP address
+  - [X] S3 Buckets
+  - [X] Social informations
+  - [X] Emails
+  - [X] API availability
+  - [X] Open Ports / Services running
+  - [X] Service version info
+  - [X] Vhosts
+  - [X] Server banners
+  - [X] Presence of security headers
+  - [X] WAF (+ WAF type)
+  - [ ] Directory listings
+- Exec
+  - [ ] Markdown report creation
+  - [ ] User inputs
 
 See the [open issues](https://github.com/Hato0/Bountease) for a full list of proposed features (and known issues).
 

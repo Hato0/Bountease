@@ -10,6 +10,7 @@ from modules.activeScanner import activeScan
 
 if __name__ == "__main__":
     # test = SubHunt(["example.com"], dorksMax=20, verify=False)
+    # test.getDnsdumpster()
     # test.getCRT()
     # test.getWayback()
     # test.getDorks()
@@ -26,10 +27,13 @@ if __name__ == "__main__":
     # test4.getLinkedinInfo()
     # test4.getEmailFormat()
     # print(test4.mailFormat)
-    # test5 = activeScan(False, targetIP=[test2.targetIP], targetDomain=[test2.subdomain], topXPort=100, reqLimit=3 ,verify=True, userAgent="Bountease")
+    # test5 = activeScan(False, targetIP=[], targetDomain=["example.com"], topXPort=100, reqLimit=3 ,verify=True, userAgent="Bountease")
     # test5.massScan()
     # test5.vhostEnum()
     # test5.apiDiscovery()
     # test5.subDomainEnum()
     # print(test5.isAPI, test5.domain, test5.ip)
-    print('Still in development, release when all features are available')
+    # test5.securityHeaders()
+    # test5.detectWAF()
+    # test5.directoryListingScan()
+    print('Still in development ...')
