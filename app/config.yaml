@@ -1,0 +1,25 @@
+Global:
+  verify: True
+  reqLimit: None
+  userAgent: None
+Passiv:
+  doCRT: True 
+  doWayback: True 
+  doDorks: True  
+  doDnsdumpster: True 
+  doS3: True 
+  s3Thread: 30
+  doWhois: False 
+  doSocial: True
+  linkCook: None
+  maxDorks: 5
+Activ:
+  doMassScan: True
+  doVhostEnum: True 
+  doApiDisco: True
+  doSubEnum: True
+  doSecuHeader: True
+  doWafEnum: True
+  doDirList: True
+  isFull: False
+  topXPort: 100

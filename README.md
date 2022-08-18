@@ -26,8 +26,6 @@
 Bountease is a fully automated recon script to help bug bounty hunter. This script will perform the needed enumeration to correctly start your hunt and take in consideration the authorized scope.
 
 
-This project is currently in developement.
-
 ## Getting Started
 
 You can clone or fork this repository to start using it. 
@@ -54,7 +52,24 @@ git clone https://github.com/Hato0/Bountease.git
 
 ## Usage
 
-Will be updated.
+To use this software you will need first to configure your config file (config.yaml in app/).  
+This config file allow you to choose which module will be executed and with which parameters.
+
+Once this configuration file is setup for your need, launch the app.
+To do so, nothing hard:
+```bash
+usage: main.py [-h] -m MODE -t TARGETS -c CONFIG -o OUTPUT
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -m MODE, --mode MODE  Recon mode (Active, Passive, Hybrid)
+  -t TARGETS, --targets TARGETS
+                        Targets to scan (list)
+  -c CONFIG, --config CONFIG
+                        Config file
+  -o OUTPUT, --output OUTPUT
+                        Output path
+```
 
 ## Roadmap
 
@@ -72,10 +87,10 @@ Will be updated.
   - [X] Server banners
   - [X] Presence of security headers
   - [X] WAF (+ WAF type)
-  - [ ] Directory listings
+  - [X] Directory listings 
 - Exec
-  - [ ] Markdown report creation
-  - [ ] User inputs
+  - [X] Markdown report creation
+  - [X] User inputs
 
 See the [open issues](https://github.com/Hato0/Bountease) for a full list of proposed features (and known issues).
 

@@ -1,0 +1,8 @@
+beautifulsoup4>=4.11.1
+ipwhois>=1.2.0
+nmap>=0.0.1
+python_masscan>=0.1.6
+python_nmap>=0.7.1
+PyYAML>=6.0
+requests>=2.28.1
+urllib3>=1.26.11

@@ -1,4 +1,5 @@
 import requests, re, urllib3, bs4
+from time import sleep
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -47,13 +48,14 @@ class SubHunt:
         for domain in self.target:
             for i in range(0,self.dorksMax+1):
                 url=f"https://www.google.com/search?client=firefox-b-d&q=site%3A*.{domain}&start={i*10}"
-                headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0'}
+                headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0', 'referer':'https://www.google.com/'}
                 resp = requests.get(url, headers=headers,verify=self.verify)
                 regex = f"(([a-z0-9]+[.])*{domain})"
                 domainTemp = re.findall(regex, resp.text)
                 for match in domainTemp:
                     if match[0] not in self.subdomain[domain]:
                         self.subdomain[domain].append(match[0])
+                sleep(0.5)
 
     def getDnsdumpster(self):
         for domain in self.target:

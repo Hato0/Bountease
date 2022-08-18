@@ -104,7 +104,7 @@ class activeScan:
             resp = requests.get(domainFull+"/"+testValue, headers=headers, verify=self.verify)
             baseline = len(resp.text)-(len(testValue)*resp.text.count(testValue))
             if domain.split('.')[0] == 'api':
-                self.isAPI(domain)
+                self.isAPI.append(domain)
             else:
                 if self.userAgent:
                     headers = {'User-Agent': self.userAgent} 
@@ -112,7 +112,7 @@ class activeScan:
                     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0'}
                 resp = requests.get(domainFull+'/api', headers=headers, verify=self.verify)
                 if resp.status_code != 404 and (len(resp.text)-(len(testValue)*resp.text.count(testValue))) != baseline:
-                    self.isAPI(domain)
+                    self.isAPI.append(domain)
                     
     def securityHeaders(self):
         securityHeaders = ["x-xss-protection", "strict-transport-security", "x-frame-options", "x-content-type-options", "content-security-policy", "public-key-pins", "x-permitted-cross-domain-policies", "referrer-policy"]
