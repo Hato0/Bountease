@@ -135,7 +135,7 @@ def createReport(obj, mode):
                         WafData = ""
                         for wafSign in website:
                             WafData += f"{wafSign}\n\n"
-                        report.write(f"|{website}|{Waf}||[ ]|\n")
+                        report.write(f"|{website}|{WafData}||[ ]|\n")
                 else:
                     report.write(f"\nNo data found\n")
 
