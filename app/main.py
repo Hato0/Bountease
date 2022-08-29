@@ -152,7 +152,7 @@ def createReport(obj, mode):
                     report.write(f"\nNo data found\n")
 
 def passScan(targets, dorkMax, verify, doCRT, doWayback, doDorks,  doDnsdumpster, 
-                doS3, s3Thread, doWhois, doSocial, linkCook):
+                doS3, s3Thread, doWhois, doSocial, linkCook, excludeScope):
     subDomainHunt = SubHunt(targets, dorksMax=dorkMax, verify=verify)
     enumDone = []
     if doCRT:
@@ -192,11 +192,22 @@ def passScan(targets, dorkMax, verify, doCRT, doWayback, doDorks,  doDnsdumpster
             socialHunt.getLinkedinInfo()
         socialHunt.getEmailFormat()
         enumDone.append(socialHunt)
+    for target in targets:
+        for subdomain in subDomainHunt.subdomain[target]:
+            if subdomain in excludeScope:
+                subDomainHunt.subdomain[target].remove(subdomain)
     createReport(enumDone, "passiv")
+    return subDomainHunt.subdomain
 
 def actScan(targetIP, targetDomain, doMassScan, doVhostEnum, doApiDisco, doSubEnum, 
             doSecuHeader, doWafEnum, doDirList,isFull, topXPort, reqLimit, 
-            verify, userAgent):
+            verify, userAgent, excludeScope):
+    for domain in targetDomain:
+        if domain in excludeScope:
+            targetDomain.remove(domain)
+    for ip in targetIP:
+        if targetIP in excludeScope:
+            targetIP.remove(ip)
     actHunt = activeScan(isFull, targetIP, targetDomain, topXPort, reqLimit, verify, userAgent)
     if doMassScan:
         actHunt.massScan()
@@ -218,11 +229,15 @@ def actScan(targetIP, targetDomain, doMassScan, doVhostEnum, doApiDisco, doSubEn
 def hybridScan(targets, targetIP, dorkMax, verify, doCRT, doWayback, doDorks,  doDnsdumpster, 
                doS3, s3Thread, doWhois, doSocial, linkCook, doMassScan, doVhostEnum, 
                doApiDisco, doSubEnum, doSecuHeader, doWafEnum, doDirList, isFull, 
-               topXPort, reqLimit, userAgent):
-    passScan(targets, dorkMax, verify, doCRT, doWayback, doDorks,  doDnsdumpster, doS3, s3Thread, doWhois, 
-    doSocial, linkCook)
+               topXPort, reqLimit, userAgent, excludeScope):
+    additionalTarget = passScan(targets, dorkMax, verify, doCRT, doWayback, doDorks,  doDnsdumpster, doS3, s3Thread, doWhois, 
+    doSocial, linkCook, excludeScope)
+    for target in additionalTarget:
+        for subdomain in target:
+            if subdomain not in target and subdomain not in excludeScope:
+                targets.append(subdomain)
     actScan(targetIP, targets, doMassScan, doVhostEnum, doApiDisco, doSubEnum, doSecuHeader, doWafEnum, 
-    doDirList, isFull, topXPort, reqLimit, userAgent)
+    doDirList, isFull, topXPort, reqLimit, userAgent, excludeScope)
 
 
 
@@ -264,6 +279,7 @@ if __name__ == "__main__":
     verify = cfg["Global"]["verify"]
     reqLimit = cfg["Global"]["reqLimit"]
     userAgent = cfg["Global"]["userAgent"]
+    excludeScope = cfg["Global"]["excludedScope"]
 
     doCRT =  cfg["Passiv"]["doCRT"]
     doWayback = cfg["Passiv"]["doWayback"]
@@ -296,11 +312,11 @@ if __name__ == "__main__":
         hybridScan(targets, targetIP, maxDorks, verify, doCRT, doWayback, doDorks,  doDnsdumpster, 
                doS3, s3Thread, doWhois, doSocial, linkCook, doMassScan, doVhostEnum, 
                doApiDisco, doSubEnum, doSecuHeader, doWafEnum, doDirList, isFull, 
-               topXPort, reqLimit, userAgent)
+               topXPort, reqLimit, userAgent, excludeScope)
     if mode == "Active":
         actScan(targetIP, targets, doMassScan, doVhostEnum, doApiDisco, doSubEnum, 
             doSecuHeader, doWafEnum, doDirList,isFull, topXPort, reqLimit, 
-            verify, userAgent)
+            verify, userAgent, excludeScope)
     if mode == "Passive":
         passScan(targets, maxDorks, verify, doCRT, doWayback, doDorks,  doDnsdumpster, 
-                doS3, s3Thread, doWhois, doSocial, linkCook)
+                doS3, s3Thread, doWhois, doSocial, linkCook, excludeScope)

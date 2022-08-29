@@ -16,15 +16,16 @@ class S3Hunt:
 
     def getBucket(self, wordlist):
             for name in self.target:
+                target = name
                 name = name.split('.')[0]
                 for test in wordlist: 
                     test = test.split('\n')[0]
                     r = requests.head(f"https://{name}-{test}.s3.amazonaws.com")
                     if r.status_code != 404:
-                        self.s3Buckets[name].append(f"Bucket found : {name}-{test}")
+                        self.s3Buckets[target].append(f"Bucket found : {name}-{test}")
                     r = requests.head(f"https://{name}{test}.s3.amazonaws.com")
                     if r.status_code != 404:
-                        self.s3Buckets[name].append(f"Bucket found : {name}{test}")
+                        self.s3Buckets[target].append(f"Bucket found : {name}{test}")
 
     def launchBucketRecon(self):
         with open('wordlist/s3buckets.txt', 'r') as s3list:

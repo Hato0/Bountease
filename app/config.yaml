@@ -2,6 +2,8 @@ Global:
   verify: True
   reqLimit: None
   userAgent: None
+  excludedScope:
+    - malicious.example.com
 Passiv:
   doCRT: True 
   doWayback: True 
